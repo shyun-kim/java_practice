@@ -1,4 +1,4 @@
-package practice.model;
+package opp_practice.model;
 
 public class Book {
 	private String id;

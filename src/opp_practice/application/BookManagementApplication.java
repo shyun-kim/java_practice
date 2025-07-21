@@ -1,10 +1,9 @@
-package practice.application;
+package opp_practice.application;
 
 import java.util.Scanner;
 
-import com.bookmgm.service.BookService;
-
-import practice.service.DefaultBookService;
+import opp_practice.service.BookService;
+import opp_practice.service.DefaultBookService;
 
 public class BookManagementApplication {
 	
@@ -19,7 +18,7 @@ public class BookManagementApplication {
 	
 	public BookManagementApplication() {
 		scan = new Scanner(System.in);
-		service = (BookService) new DefaultBookService(this);
+		service = new DefaultBookService(this);
 		showMenu();
 	}
 	
@@ -27,9 +26,9 @@ public class BookManagementApplication {
 	 * 메뉴 출력
 	 */
 	public void showMenu() {
+		String labels[] = {"도서 등록","도서 목록 조회","도서 검색","도서 수정","도서 삭제","종료"};
 		System.out.println("===========도서관리===========");
 		System.out.println("전체 도서수: "+service.getCount());
-		String labels[] = {"도서 등록","도서 목록 조회","도서 검색","도서 수정","도서 삭제","종료"};
 		for(int i=0;i<labels.length;i++) {
 			System.out.println((i+1)+". "+labels[i]);
 		}
@@ -39,7 +38,7 @@ public class BookManagementApplication {
 	}
 	
 	public void selectMenu() {
-		System.out.println("메뉴(숫자)> ");
+		System.out.print("메뉴(숫자)> ");
 		if(scan.hasNextInt()) {
 			switch(scan.nextInt()) {
 				case REGISTER:

@@ -1,4 +1,4 @@
-package practice.service;
+package opp_practice.service;
 
 public interface BookService {
 	

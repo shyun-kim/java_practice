@@ -1,11 +1,12 @@
-package practice.service;
+package opp_practice.service;
 
 import java.util.List;
 import java.util.Random;
 
-import practice.application.BookManagementApplication;
-import practice.model.Book;
-import practice.repository.BookRepository;
+import opp_practice.application.BookManagementApplication;
+import opp_practice.model.Book;
+import opp_practice.repository.BookRepository;
+import opp_practice.repository.InMemoryBookRepository;
 
 public class DefaultBookService implements BookService{
 	BookManagementApplication bma;
@@ -14,6 +15,7 @@ public class DefaultBookService implements BookService{
 	public DefaultBookService() {}
 	public DefaultBookService(BookManagementApplication bma) {
 		this.bma=bma;
+		repository=new InMemoryBookRepository();
 //		selectRepository();
 	}
 	
@@ -95,7 +97,7 @@ public class DefaultBookService implements BookService{
 				System.out.print("["+book.getId()+"]\t");
 				System.out.print(book.getName()+"\t");
 				System.out.print(book.getAuthor()+"\t");
-				System.out.print(book.getPrice()+"\t");
+				System.out.print(book.getPrice()+"\n");
 			});
 		} else {
 			System.out.println(">등록된 도서가 없습니다.");
@@ -110,8 +112,13 @@ public class DefaultBookService implements BookService{
 			Book book = repository.select(bma.scan.next());
 			if (book != null) {
 				printBook(book);
+			}else {
+				System.out.println(">검색한 도서가 존재하지 않습니다.");
 			}
+		} else {
+			System.out.println(">등록된 도서가 없습니다.");
 		}
+		bma.showMenu();
 	}
 	
 	@Override

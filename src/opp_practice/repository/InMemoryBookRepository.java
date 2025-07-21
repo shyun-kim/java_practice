@@ -1,10 +1,10 @@
-package practice.repository;
+package opp_practice.repository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import practice.model.Book;
+import opp_practice.model.Book;
 
 public class InMemoryBookRepository implements BookRepository{
 	
@@ -33,7 +33,6 @@ public class InMemoryBookRepository implements BookRepository{
 		Iterator<Book> ie = library.iterator();
 		while (ie.hasNext()) {
 			Book book = ie.next();
-			Book b = ie.next();
 			if(book.getId().equals(id)) {
 				ie.remove();
 			}
@@ -58,6 +57,7 @@ public class InMemoryBookRepository implements BookRepository{
 		for (Book b : library) {
 			if(b.getId().equals(book.getId())) {
 				idx = i;
+				break;
 			}
 			i++;
 		}
@@ -78,6 +78,6 @@ public class InMemoryBookRepository implements BookRepository{
 	
 	@Override
 	public int getCount() {
-		return 0;
+		return library.size();
 	}
 }
